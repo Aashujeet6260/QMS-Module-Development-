@@ -1,0 +1,56 @@
+/* Tailwind's `preflight` acts as a modern CSS Reset, so we start here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-text-primary;
+  }
+  h1 { @apply text-3xl; }
+  h2 { @apply text-2xl; }
+  h3 { @apply text-xl; }
+}
+
+@layer components {
+  /* Main content card/surface style */
+  .card {
+    @apply bg-surface border border-border rounded-xl shadow-card;
+  }
+
+  /* Button Styles */
+  .btn {
+    /* The previous error for 'ring-primary-500' was fixed here */
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    /* THE FIX IS HERE: Changed bg-primary-600 to bg-primary and hover:bg-primary-700 to hover:bg-primary-dark */
+    @apply text-white bg-primary hover:bg-primary-dark shadow-sm transform hover:-translate-y-px;
+  }
+  .btn-secondary {
+    @apply text-text-primary bg-surface border border-border hover:bg-background shadow-sm;
+  }
+  .btn-danger {
+    @apply text-white bg-danger hover:bg-red-600 shadow-sm;
+  }
+
+  /* Form Input Styles */
+  .form-input {
+    @apply mt-1 block w-full px-3 py-2 bg-surface border border-border rounded-lg shadow-sm placeholder-text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200;
+  }
+
+  /* Table Styles */
+  .table-striped tbody tr:nth-child(even) {
+    @apply bg-slate-50;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }

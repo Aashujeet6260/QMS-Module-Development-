@@ -1,0 +1,17 @@
+{
+  "name": "qms-fullstack-project",
+  "version": "1.0.0",
+  "description": "A full-stack QMS application with React and FastAPI.",
+  "private": true,
+  "scripts": {
+  "install": "npm run install-frontend",
+  "install-frontend": "cd frontend && npm install",
+  "build-backend": "cd backend && docker build -t qms-backend .",
+  "start": "concurrently \"npm:start-backend\" \"npm:start-frontend\"",
+  "start-frontend": "cd frontend && npm run dev",
+  "start-backend": "docker run -p 8000:8000 --env-file backend/.env qms-backend"
+},
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
