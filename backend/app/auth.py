@@ -4,11 +4,11 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from typing import Optional
-from . import schemas, crud, models
+from . import schemas, models # We can keep these top-level imports
 from sqlalchemy.orm import Session
 from .database import SessionLocal
 
-SECRET_KEY = "a_very_secret_key_that_should_be_in_an_env_file" # In a real app, use environment variables
+SECRET_KEY = "a_very_secret_key_that_should_be_in_an_env_file"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
@@ -36,6 +36,9 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    # THE FIX IS HERE: We move the `crud` import inside the function to break the cycle.
+    from . import crud
+    
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

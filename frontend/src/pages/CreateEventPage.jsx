@@ -15,7 +15,9 @@ const CreateEventPage = () => {
         isEditMode ? (state.qms.currentEvent && state.qms.currentEvent.id === parseInt(eventId) ? state.qms.currentEvent : null) : null
     );
 
+    // This line declares the 'step' variable that was missing
     const [step, setStep] = useState(1);
+    
     const [formData, setFormData] = useState({
         title: '', event_type: 'Deviation', description: '',
         occurrence_date: '', reported_by: '', location: '',
@@ -43,13 +45,10 @@ const CreateEventPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // THE FIX IS HERE: Add a validation check for the date.
         if (!formData.occurrence_date) {
             alert("Please select a valid Occurrence Date & Time.");
             return;
         }
-
         const { id, event_id_str, created_at, ...payload } = formData;
         try {
             if (isEditMode) {
@@ -149,9 +148,11 @@ const CreateEventPage = () => {
                                     </select>
                                 </div>
                                 <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-text-secondary">Initial Status*</label>
+                                    <label className="block text-sm font-medium text-text-secondary">Status*</label>
                                      <select name="status" value={formData.status} onChange={handleChange} className="form-input">
-                                        <option>Open</option><option>Investigation</option>
+                                        <option>Open</option>
+                                        <option>Investigation</option>
+                                        <option>Closed</option>
                                     </select>
                                 </div>
                             </div>
