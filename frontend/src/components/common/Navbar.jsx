@@ -33,7 +33,7 @@ const Navbar = () => {
             <div className="flex items-center gap-8">
                 <Link to="/" className="flex items-center gap-3">
                   <ShieldCheck className="w-8 h-8 text-primary-600" />
-                  <span className="text-xl font-bold text-text-primary">AIVOA QMS</span>
+                  <span className="text-xl font-bold text-text-primary">AI Assitance - QMS System</span>
                 </Link>
                 {/* Show navigation links only if the user is logged in */}
                 {user && (

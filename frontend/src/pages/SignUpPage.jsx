@@ -32,7 +32,7 @@ const SignUpPage = () => {
         <div className="text-center mb-8">
            <div className="inline-flex items-center gap-3">
             <ShieldCheck className="w-10 h-10 text-primary-600" />
-            <span className="text-2xl font-bold text-text-primary">AIVOA QMS</span>
+            <span className="text-2xl font-bold text-text-primary">AI Assitance - QMS System</span>
           </div>
         </div>
         <div className="card p-8">
