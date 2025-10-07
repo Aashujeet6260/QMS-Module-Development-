@@ -17,6 +17,7 @@ app = FastAPI()
 # --- CORS MIDDLEWARE ---
 origins = [
     "http://localhost:5173",
+    "https://qms-module-development.vercel.app/login",
 ]
 
 app.add_middleware(
